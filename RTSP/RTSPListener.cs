@@ -380,7 +380,8 @@
                                 currentReadingState = ReadingState.End;
                                 break;
                             }
-                            byteReaden += byteCount;                            _logger.Debug(CultureInfo.InvariantCulture, "Readen {0} byte of data", byteReaden);
+                            byteReaden += byteCount;
+                            _logger.Debug(CultureInfo.InvariantCulture, "Readen {0} byte of data", byteReaden);
                         }
                         // if we haven't read all go there again else go to end. 
                         if (byteReaden >= currentMessage.Data.Length)
@@ -514,7 +515,7 @@
             if (!_transport.Connected)
             {
                 if(!AutoReconnect)
-                    return;
+                    throw new Exception("Connection is lost");
 
                 _logger.Warn("Reconnect to a client, strange !!");
                 Reconnect();
